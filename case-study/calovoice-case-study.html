@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Calovoice — Product Case Study</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #0a0a0a;
+    --surface: #141414;
+    --surface-2: #1c1c1e;
+    --surface-3: #2c2c2e;
+    --border: #2a2a2a;
+    --text: #f5f5f7;
+    --text-2: #a1a1a6;
+    --text-3: #6e6e73;
+    --accent: #0a9263;
+    --accent-light: #0fb97c;
+    --accent-bg: rgba(10, 146, 99, 0.1);
+    --blue: #3a8ee6;
+    --amber: #e6a23c;
+    --red: #e65c5c;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 11px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 40px 48px;
+    margin: 0 auto;
+    background: var(--bg);
+    page-break-after: always;
+    position: relative;
+  }
+
+  .page:last-child { page-break-after: avoid; }
+
+  /* Header */
+  .hero {
+    margin-bottom: 36px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: var(--accent-bg);
+    color: var(--accent-light);
+    border-radius: 100px;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin-bottom: 10px;
+  }
+
+  .hero h1 span { color: var(--accent-light); }
+
+  .hero-subtitle {
+    font-size: 13.5px;
+    color: var(--text-2);
+    line-height: 1.55;
+    max-width: 520px;
+  }
+
+  .meta-row {
+    display: flex;
+    gap: 24px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+
+  .meta-item {
+    font-size: 9.5px;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  .meta-item strong {
+    color: var(--text-2);
+    font-weight: 600;
+    display: block;
+    margin-top: 2px;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 10.5px;
+  }
+
+  /* Sections */
+  .section {
+    margin-bottom: 30px;
+  }
+
+  .section-label {
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--accent-light);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .section h2 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    margin-bottom: 12px;
+    line-height: 1.25;
+  }
+
+  .section h3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    margin-top: 18px;
+    color: var(--text);
+  }
+
+  .section p {
+    color: var(--text-2);
+    line-height: 1.7;
+    margin-bottom: 10px;
+    font-size: 11px;
+  }
+
+  .section p strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* Highlight box */
+  .highlight-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 16px 0;
+  }
+
+  .highlight-box.accent {
+    border-left: 3px solid var(--accent);
+  }
+
+  .highlight-box p {
+    margin-bottom: 0;
+    font-size: 12px;
+    color: var(--text);
+    font-weight: 500;
+    line-height: 1.6;
+  }
+
+  .highlight-box .label {
+    font-size: 9px;
+    color: var(--accent-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  /* Pipeline */
+  .pipeline {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin: 16px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    line-height: 1.8;
+    color: var(--text-2);
+  }
+
+  .pipeline .step {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+
+  .pipeline .arrow {
+    color: var(--text-3);
+    font-size: 10px;
+    margin: 2px 0 2px 6px;
+  }
+
+  .pipeline .step-label {
+    color: var(--accent-light);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .pipeline .step-detail {
+    color: var(--text-3);
+  }
+
+  /* Decision cards */
+  .decisions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 14px 0;
+  }
+
+  .decision-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+
+  .decision-card .decision-title {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 5px;
+  }
+
+  .decision-card .decision-reason {
+    font-size: 9.5px;
+    color: var(--text-3);
+    line-height: 1.55;
+  }
+
+  /* Feature list */
+  .feature-list {
+    list-style: none;
+    margin: 12px 0;
+  }
+
+  .feature-list li {
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 10px;
+    font-size: 11px;
+    color: var(--text-2);
+    line-height: 1.6;
+  }
+
+  .feature-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .feature-list li strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* Screenshots */
+  .screenshots {
+    display: flex;
+    gap: 14px;
+    margin: 20px 0;
+    justify-content: center;
+  }
+
+  .screenshot-wrap {
+    text-align: center;
+  }
+
+  .screenshot-wrap img {
+    height: 300px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    object-fit: cover;
+  }
+
+  .screenshot-wrap .caption {
+    font-size: 9px;
+    color: var(--text-3);
+    margin-top: 8px;
+    letter-spacing: 0.3px;
+  }
+
+  /* Stats row */
+  .stats-row {
+    display: flex;
+    gap: 0;
+    margin: 18px 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .stat {
+    flex: 1;
+    padding: 16px 18px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+  }
+
+  .stat:last-child { border-right: none; }
+
+  .stat-value {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--accent-light);
+    letter-spacing: -0.5px;
+  }
+
+  .stat-label {
+    font-size: 8.5px;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 3px;
+  }
+
+  /* Table */
+  .table-wrap {
+    margin: 14px 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10px;
+  }
+
+  th {
+    background: var(--surface);
+    color: var(--text-3);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-size: 8.5px;
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+
+  td {
+    padding: 10px 14px;
+    color: var(--text-2);
+    border-bottom: 1px solid var(--border);
+    line-height: 1.5;
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  td:first-child {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* Roadmap */
+  .roadmap {
+    margin: 16px 0;
+  }
+
+  .roadmap-item {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 14px;
+    align-items: flex-start;
+  }
+
+  .roadmap-badge {
+    flex-shrink: 0;
+    width: 36px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .roadmap-badge.v1 { background: var(--accent-bg); color: var(--accent-light); }
+  .roadmap-badge.v2 { background: rgba(58, 142, 230, 0.12); color: var(--blue); }
+  .roadmap-badge.v3 { background: rgba(230, 162, 60, 0.12); color: var(--amber); }
+
+  .roadmap-content h4 {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 3px;
+  }
+
+  .roadmap-content p {
+    font-size: 10px;
+    color: var(--text-3);
+    margin-bottom: 0;
+    line-height: 1.55;
+  }
+
+  /* Metric pills */
+  .metric-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 12px 0;
+  }
+
+  .metric-pill {
+    padding: 6px 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 9.5px;
+    color: var(--text-2);
+    font-weight: 500;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .footer-tagline {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.2px;
+    margin-bottom: 6px;
+  }
+
+  .footer-sub {
+    font-size: 10.5px;
+    color: var(--text-3);
+  }
+
+  /* Two column layout */
+  .two-col {
+    display: flex;
+    gap: 24px;
+  }
+
+  .two-col > * { flex: 1; }
+
+  /* Page number */
+  .page-num {
+    position: absolute;
+    bottom: 24px;
+    right: 48px;
+    font-size: 9px;
+    color: var(--text-3);
+  }
+
+  /* Conversation example */
+  .convo {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 14px 0;
+  }
+
+  .convo-msg {
+    margin-bottom: 12px;
+  }
+
+  .convo-msg:last-child { margin-bottom: 0; }
+
+  .convo-sender {
+    font-size: 8.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 4px;
+  }
+
+  .convo-sender.user { color: var(--text-3); }
+  .convo-sender.ai { color: var(--accent-light); }
+
+  .convo-text {
+    font-size: 10.5px;
+    line-height: 1.6;
+    color: var(--text-2);
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1: Hero + Problem + Insight -->
+<div class="page">
+  <div class="hero">
+    <div class="hero-badge">Product Case Study</div>
+    <h1>Calovoice<br/><span>Voice-First Calorie Tracking</span></h1>
+    <p class="hero-subtitle">
+      A voice-powered calorie tracker that turns natural speech into structured food logs — reducing meal logging from ~2 minutes to under 10 seconds.
+    </p>
+    <div class="meta-row">
+      <div class="meta-item">Role <strong>Product Design & Engineering</strong></div>
+      <div class="meta-item">Timeline <strong>2026 (MVP)</strong></div>
+      <div class="meta-item">Platform <strong>PWA (Mobile-first)</strong></div>
+      <div class="meta-item">Status <strong>MVP Complete · V2 Planned</strong></div>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat">
+      <div class="stat-value">&lt;10s</div>
+      <div class="stat-label">Time to log (voice)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">~2min</div>
+      <div class="stat-label">Traditional apps</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">12×</div>
+      <div class="stat-label">Faster logging</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">3</div>
+      <div class="stat-label">API pipeline stages</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">01 — The Problem</div>
+    <h2>Calorie tracking has a compliance problem,<br/>not a feature problem.</h2>
+    <p>
+      Apps like HealthifyMe and MyFitnessPal have been around for over a decade. The feature set is mature — massive food databases, barcode scanners, meal plans. <strong>Yet most users quit within two weeks.</strong>
+    </p>
+    <p>
+      The reason isn't lack of information. It's friction. Logging a single meal means: open the app, tap "Add Food," search a database, scroll through 30+ variants, adjust serving sizes, and repeat for every item on your plate. <strong>That's ~2 minutes per meal, 6–8 minutes per day, of tedious data entry.</strong>
+    </p>
+    <p>
+      For something that's supposed to help you feel better about your health, it feels like homework. The moment life gets busy — you skip a log, then two, then the habit dies.
+    </p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">02 — The Insight</div>
+    <h2>Natural speech is 12× faster than search-and-select.</h2>
+
+    <div class="highlight-box accent">
+      <div class="label">Core Hypothesis</div>
+      <p>"Two rotis with dal and a bowl of curd" takes 3 seconds to say but 2 minutes to manually log. If you reduce the logging interaction from ~2 minutes to ~10 seconds, the cost-benefit equation flips — and the habit sticks.</p>
+    </div>
+
+    <p>
+      Voice isn't just a convenience feature. It's a fundamental UX paradigm shift. <strong>The primary reason calorie tracking fails isn't lack of motivation — it's that the act of logging is too slow relative to the value it provides in the moment.</strong>
+    </p>
+  </div>
+
+  <div class="page-num">1 / 4</div>
+</div>
+
+<!-- PAGE 2: Solution + Pipeline + Screenshots -->
+<div class="page">
+  <div class="section">
+    <div class="section-label">03 — The Solution</div>
+    <h2>Tap. Speak. Done.</h2>
+    <p>
+      Calovoice is a voice-first calorie tracker. The core interaction: tap a button, say what you ate, and the app handles parsing, calorie estimation, and logging. The user reviews an editable summary — but in most cases, they just hit save.
+    </p>
+
+    <h3>The LLM Pipeline</h3>
+    <div class="pipeline">
+      <div class="step"><span class="step-label">① Voice Input</span><span class="step-detail">— Web Speech API captures natural language</span></div>
+      <div class="arrow">↓</div>
+      <div class="step"><span class="step-label">② Transcript</span><span class="step-detail">— "A bowl of oats with banana and black coffee"</span></div>
+      <div class="arrow">↓</div>
+      <div class="step"><span class="step-label">③ LLM Parse</span><span class="step-detail">— OpenRouter (JSON mode) extracts structured items</span></div>
+      <div class="arrow">↓</div>
+      <div class="step"><span class="step-label">④ Calorie Lookup</span><span class="step-detail">— Local dictionary → CalorieNinjas API fallback</span></div>
+      <div class="arrow">↓</div>
+      <div class="step"><span class="step-label">⑤ Review & Save</span><span class="step-detail">— Editable form → Firestore transaction</span></div>
+    </div>
+
+    <h3>Key Interaction Patterns</h3>
+    <ul class="feature-list">
+      <li><strong>Silence-as-submit:</strong> No "Done" button during recording. 3.5 seconds of silence after speech auto-finalizes and sends to the LLM. Silence IS the punctuation.</li>
+      <li><strong>Graceful degradation:</strong> If voice fails (unsupported browser, API error, empty parse), the user silently lands on a manual form. An inline banner offers "Try again with voice" — never a dead-end error screen.</li>
+      <li><strong>Live waveform:</strong> Real-time amplitude visualization during recording gives the user confidence the app is listening.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-label">App Screenshots</div>
+    <div class="screenshots">
+      <div class="screenshot-wrap">
+        <img src="screen-dayview.png" alt="Day view" />
+        <div class="caption">Day View — Empty State</div>
+      </div>
+      <div class="screenshot-wrap">
+        <img src="screen-voice.png" alt="Voice recording" />
+        <div class="caption">Voice Recording Sheet</div>
+      </div>
+      <div class="screenshot-wrap">
+        <img src="screen-activity.png" alt="Activity logging" />
+        <div class="caption">Activity Logging</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-num">2 / 4</div>
+</div>
+
+<!-- PAGE 3: Product Decisions + Architecture -->
+<div class="page">
+  <div class="section">
+    <div class="section-label">04 — Product Decisions That Matter</div>
+    <h2>Every detail serves the core hypothesis.</h2>
+
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th style="width: 28%;">Decision</th>
+          <th>What & Why</th>
+        </tr>
+        <tr>
+          <td>Time-aware CTA</td>
+          <td>The floating button reads "Log Breakfast" before 11 AM, "Log Lunch" before 2 PM, "Log Snack" before 5 PM, "Log Dinner" after. Removes the cognitive overhead of categorization and nudges consistent meal patterns.</td>
+        </tr>
+        <tr>
+          <td>Calorie ring pace tick</td>
+          <td>A small tick on the progress ring shows where you "should" be at this hour (7 AM – 11 PM eating window). Ambient pacing info with zero text — the user feels it without reading it.</td>
+        </tr>
+        <tr>
+          <td>Contextual insights</td>
+          <td>8 distinct branches generate specific guidance: "Eat ~520 kcal per meal across your next 2 meals" or "Nearly there — a light snack to finish." Adapts to time, logged meals, and remaining budget in real-time.</td>
+        </tr>
+        <tr>
+          <td>Predictive projection</td>
+          <td>After 2+ meals, extrapolates end-of-day intake from eating pace. "At your current pace, you'll exceed by ~400 kcal" — forward-looking without being anxious.</td>
+        </tr>
+        <tr>
+          <td>Animated numbers</td>
+          <td>Every caloric value counts up/down over 500ms with cubic ease-out. When you log 400 kcal, the "remaining" number smoothly descends. Data feels alive.</td>
+        </tr>
+        <tr>
+          <td>Empty state as onramp</td>
+          <td>No sad empty icon. A plate illustration, clear copy, and quick-add chips (Breakfast, Lunch, Dinner, Snack) that jump into the form with the label pre-filled.</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">05 — Technical Architecture</div>
+    <h2>Deliberate constraints, not defaults.</h2>
+
+    <div class="decisions-grid">
+      <div class="decision-card">
+        <div class="decision-title">PWA over native</div>
+        <div class="decision-reason">MVP velocity. Validates voice interaction before investing in native. V2 roadmap targets native for widget-based zero-open logging.</div>
+      </div>
+      <div class="decision-card">
+        <div class="decision-title">No global state store</div>
+        <div class="decision-reason">Firebase real-time listeners ARE the state layer. Components subscribe via hooks. No Redux, no Zustand — zero redundant state to manage.</div>
+      </div>
+      <div class="decision-card">
+        <div class="decision-title">Custom ESLint rules</div>
+        <div class="decision-reason">Two rules (no-raw-style-literals, no-color-literals) make design token violations a build error. The design system is enforced by tooling, not discipline.</div>
+      </div>
+      <div class="decision-card">
+        <div class="decision-title">Pure CSS animation</div>
+        <div class="decision-reason">Spring-eased sheets, staggered timelines, bouncy press states — all CSS. Zero JS animation library overhead. Native-feel at zero runtime cost.</div>
+      </div>
+      <div class="decision-card">
+        <div class="decision-title">OpenRouter (model-agnostic)</div>
+        <div class="decision-reason">Switch GPT-4, Claude, or Llama without code changes. JSON mode for structured output. Local food dictionary reduces API calls for common items.</div>
+      </div>
+      <div class="decision-card">
+        <div class="decision-title">Firestore transactions</div>
+        <div class="decision-reason">Every write (append, update, delete) wrapped in runTransaction. Prevents race conditions when voice parsing saves multiple items rapidly.</div>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <p><strong>Stack:</strong> React 19 · TypeScript 5.9 · Firebase (Auth + Firestore) · OpenRouter LLM · CalorieNinjas API · Web Speech API · Vite 8 · MUI 7 · Zod · React Hook Form · PWA</p>
+    </div>
+  </div>
+
+  <div class="page-num">3 / 4</div>
+</div>
+
+<!-- PAGE 4: Vision + Metrics + Closing -->
+<div class="page">
+  <div class="section">
+    <div class="section-label">06 — The Vision</div>
+    <h2>From passive tracking to active coaching.</h2>
+    <p>
+      The MVP validates one hypothesis: voice reduces friction enough to make calorie tracking habitual. The roadmap extends the concept from logging to <strong>real-time AI-powered nutritional guidance.</strong>
+    </p>
+
+    <div class="roadmap">
+      <div class="roadmap-item">
+        <div class="roadmap-badge v1">V1</div>
+        <div class="roadmap-content">
+          <h4>Voice-First Logging (Current MVP)</h4>
+          <p>Voice-to-food pipeline, calorie ring with pace indicator, contextual insights, activity tracking, predictive projections.</p>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-badge v2">V2</div>
+        <div class="roadmap-content">
+          <h4>Conversational AI Coach</h4>
+          <p>An AI that doesn't just record what you ate — it talks back. It analyzes your day's data and guides real-time food decisions with specific, contextual recommendations.</p>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-badge v3">V3</div>
+        <div class="roadmap-content">
+          <h4>Native App with Widget Logging</h4>
+          <p>Home-screen mic widget: tap, speak, done — without opening the app. Background LLM processing. The ultimate friction elimination.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3>V2 Scenario: The AI Coach in Action</h3>
+    <div class="convo">
+      <div class="convo-msg">
+        <div class="convo-sender user">User (8:00 PM · 350 kcal remaining)</div>
+        <div class="convo-text">"I feel like eating something junk."</div>
+      </div>
+      <div class="convo-msg">
+        <div class="convo-sender ai">Calovoice AI</div>
+        <div class="convo-text">"You've got 350 kcal left — that's enough for a solid snack. How about a handful of almonds with dark chocolate? Around 280 kcal and it'll actually satisfy the craving. Skip the chips — that's 500+ and you'll feel worse after."</div>
+      </div>
+    </div>
+    <p>
+      The core product insight: calorie tracking is a means to an end. <strong>The end is making better decisions in the moment.</strong> The AI coach bridges that gap — it has your context (today's intake, your goal, remaining budget, time of day) and gives specific guidance, not generic advice.
+    </p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">07 — What I'd Measure</div>
+    <h2>Validating the hypothesis.</h2>
+    <div class="metric-pills">
+      <div class="metric-pill">Voice vs. manual usage ratio</div>
+      <div class="metric-pill">Time-to-log &lt;10s target</div>
+      <div class="metric-pill">LLM parse edit rate</div>
+      <div class="metric-pill">7-day & 14-day retention</div>
+      <div class="metric-pill">Meals logged per day</div>
+      <div class="metric-pill">Fallback-to-manual rate</div>
+      <div class="metric-pill">Predictive insight engagement</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p class="footer-tagline">The best health app is the one you actually use.</p>
+    <p class="footer-sub">Calovoice — designed and built by Nikhil Ji · 2026</p>
+  </div>
+
+  <div class="page-num">4 / 4</div>
+</div>
+
+</body>
+</html>
